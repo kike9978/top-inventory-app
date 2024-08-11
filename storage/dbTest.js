@@ -7,7 +7,7 @@ class Storage {
 				"+ +",
 				"Loona",
 				"Loona",
-				"Ver A.",
+				"A",
 				29.9,
 				12,
 				"https://0.soompi.io/wp-content/uploads/2018/08/17080540/loona7.jpg",
@@ -19,7 +19,7 @@ class Storage {
 				"+ +",
 				"Loona",
 				"Loona",
-				"Ver B.",
+				"B",
 				29.9,
 				12,
 				"https://upload.wikimedia.org/wikipedia/pt/4/41/Capa_%2B%2B_%C3%A1lbum_Loona.png",
@@ -32,6 +32,10 @@ class Storage {
 
 	getItems() {
 		return Object.values(this.storage);
+	}
+
+	getAlbumById(albumId) {
+		return this.storage[albumId];
 	}
 }
 

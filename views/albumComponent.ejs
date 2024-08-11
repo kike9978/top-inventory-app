@@ -1,7 +1,12 @@
-<article>
-    <p>
-        <%= item.artist %> - <%= item.title %>
-
+<article class="flex flex-col">
+    <img src="<%= item.coverImg %>" alt="" class="object-contain max-h-60  border-slate-200 border-solid border">
+    <p class="font-bold">
+        <%= item.artist %>
     </p>
-    <img src="<%= item.coverImg %>" alt="">
+    <p>
+        <%= item.title %> (<%= item.version %> Ver.)
+    </p>
+    <p class="font-bold text-lg">
+        USD <%= item.price %>
+    </p>
 </article>

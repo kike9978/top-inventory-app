@@ -1,15 +1,20 @@
 import express from "express";
 import dotenv from "dotenv";
 import indexController from "./controllers/IndexController";
+import path from "node:path";
+import albumRouter from "./routers/Albums";
 
 dotenv.config();
+const assetsPath = path.join(__dirname, "/public");
 
 const PORT = process.env.PORT || 8000;
 const app = express();
 
+app.use(express.static(assetsPath));
 app.set("views", "views");
 app.set("view engine", "ejs");
 
+app.use("/album", albumRouter);
 app.get("/", indexController.indexGet);
 
 app.listen(PORT, () => {

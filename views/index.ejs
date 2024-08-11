@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hola</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
     <h1>Hola</h1>
-    <% items.forEach(item=> { %>
-        <%- include("albumComponent", {item}) %>
-            <% }) %>
+    <main class="grid grid-cols-6 gap-4 mx-2">
+        <% items.forEach(item=> { %>
+            <%- include("albumComponent", {item}) %>
+                <% }) %>
+    </main>
 </body>
 
 </html>
