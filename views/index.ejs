@@ -11,9 +11,13 @@
 <body>
     <h1>Hola</h1>
     <main class="grid grid-cols-6 gap-4 mx-2">
-        <% items.forEach(item=> { %>
-            <%- include("albumComponent", {item}) %>
-                <% }) %>
+        <% if (items[0]===undefined) { %>
+            No albums
+            <% } else { %>
+                <% items.forEach(item=> { %>
+                    <%- include("albumComponent", {item}) %>
+                        <% }) %>
+                            <% } %>
     </main>
 </body>
 

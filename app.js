@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import indexController from "./controllers/IndexController";
 import path from "node:path";
 import albumRouter from "./routers/Albums";
+import newRouter from "./routers/New";
 
 dotenv.config();
 const assetsPath = path.join(__dirname, "/public");
@@ -15,6 +16,7 @@ app.set("views", "views");
 app.set("view engine", "ejs");
 
 app.use("/album", albumRouter);
+app.use("/new", newRouter);
 app.get("/", indexController.indexGet);
 
 app.listen(PORT, () => {

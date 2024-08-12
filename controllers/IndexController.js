@@ -2,7 +2,15 @@ import storage from "../storage/dbTest";
 
 function indexGet(req, res) {
 	const items = storage.getItems();
-	res.render("index", { items });
+	const albums = items.map((item) => {
+		const album = {
+			...item,
+			artist: storage.getArtistById(item.artistId).name,
+		};
+		return album;
+	});
+	console.log(albums);
+	res.render("index", { items: albums });
 }
 
 const indexController = {
