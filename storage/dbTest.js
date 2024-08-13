@@ -59,7 +59,6 @@ class Storage {
 	}
 
 	getArtistById(artistId) {
-		console.log("hola");
 		return this.storage.artists[artistId];
 	}
 
@@ -74,6 +73,13 @@ class Storage {
 	getCompanyById(companyId) {
 		return this.storage.companies[companyId];
 	}
+
+	getAlbumsByArtistId(artistId) {
+		return Object.values(this.storage.albums).filter(
+			(album) => album.artistId === artistId,
+		);
+	}
+
 	addAlbum(albumData) {
 		this.storage.albums[this.id] = new Album(
 			albumData.title,
