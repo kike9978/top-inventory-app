@@ -36,7 +36,7 @@ class Storage {
 					"LOONA",
 					new Date(),
 					"https://akamai.sscdn.co/uploadfile/letras/fotos/1/4/0/b/140bfcca76325e621e62fa6156d96796.jpg",
-					"Block Berry Creative",
+					"",
 				),
 				2: new Artist(
 					2,
@@ -70,6 +70,9 @@ class Storage {
 		return Object.values(this.storage.companies);
 	}
 
+	getCompanyById(companyId) {
+		return this.storage.companies[companyId];
+	}
 	addAlbum(albumData) {
 		this.storage.albums[this.id] = new Album(
 			albumData.title,
@@ -91,7 +94,7 @@ class Storage {
 			artistData.name,
 			artistData.debutDate,
 			artistData.imgUrl,
-			artistData.company,
+			artistData.companyId,
 		);
 		this.id++;
 	}
