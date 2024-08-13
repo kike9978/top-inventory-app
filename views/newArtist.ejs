@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Artist</title>
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+    <h1>Create Artist</h1>
+    <main class="flex flex-col max-w-80 mx-auto">
+        <form action="/new/artist" method="post" class="flex flex-col gap-3">
+            <%- include("components/input", {props:{id:"name", label:"Name", required:true}}) %>
+                <%- include("components/input", {props:{id:"company", label:"Company", required:true}}) %>
+
+                    <%- include("components/input", {props:{id:"debutDate", label:"Debut Date", type:"date", required:
+                        true}}) %>
+                        <%- include("components/input", {props:{id:"imgUrl", label:"Image Url", type: "url" }}) %>
+                            <button>Hazme click</button>
+        </form>
+    </main>
+
+</body>
+
+</html>

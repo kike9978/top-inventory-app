@@ -1,7 +1,9 @@
 export default class Artist {
-	constructor(id, name, debut_date) {
+	constructor(id, name, debutDate, imgUrl, company) {
 		this.name = name;
-		this.debut_date = debut_date;
+		this.debutDate = debutDate;
 		this.id = id;
+		this.imgUrl = imgUrl;
+		this.company = company;
 	}
 }

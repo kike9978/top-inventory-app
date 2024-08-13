@@ -3,21 +3,21 @@ export default class Album {
 		title,
 		artistId,
 		member,
-		version,
 		price,
-		coverImg,
+		imgUrl,
 		reviewScore,
 		discountPrice,
 		id,
+		releaseDate,
 	) {
 		this.title = title;
 		this.artistId = artistId;
 		this.member = member;
-		this.version = version;
 		this.price = price;
-		this.coverImg = coverImg;
+		this.imgUrl = imgUrl;
 		this.reviewScore = reviewScore;
 		this.discountPrice = discountPrice;
 		this.id = id;
+		this.releaseDate = releaseDate;
 	}
 }

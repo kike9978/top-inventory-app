@@ -9,7 +9,13 @@
 </head>
 
 <body>
+    <nav class="flex justify-end gap-2">
+        <a href="/new/album">Add album</a>
+        <a href="/new/artist">Add artist</a>
+        <a href="/new/company">Add company</a>
+    </nav>
     <h1>Hola</h1>
+
     <main class="grid grid-cols-6 gap-4 mx-2">
         <% if (items[0]===undefined) { %>
             No albums

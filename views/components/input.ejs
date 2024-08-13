@@ -1,0 +1,9 @@
+<label for="" class="flex flex-col gap-1">
+    <%= props.label %>
+        <input type="<%= props.type ? props.type : " text" %>" name="<%= props.id %>" id="<%= props.id %>" class="h-8
+                border border-solid border-slate-600 rounded pl-1" <%= props.required && "required" %>
+                    <%= props.max && `max=${Number(props.max)}`%>
+                        <%= (props.min || props.min===0) && `min=${Number(props.min)}`%>
+                            <%= props.step && `step=${Number(props.step)}`%>
+                                >
+</label>
