@@ -17,7 +17,7 @@ class Storage {
 					null,
 					0,
 					new Date(),
-					["hola", "adios"],
+					["X X", "Hi High", "favOrite", "열기", "Pefect Love", "Stylish"],
 				),
 				1: new Album(
 					"X X",
