@@ -10,7 +10,7 @@ function indexGet(req, res) {
 		return album;
 	});
 	console.log(albums);
-	res.render("index", { items: albums });
+	res.render("index", { items: albums, artists: storage.getArtists() });
 }
 
 const indexController = {

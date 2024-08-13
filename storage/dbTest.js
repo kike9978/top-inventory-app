@@ -31,8 +31,20 @@ class Storage {
 				),
 			},
 			artists: {
-				1: new Artist(1, "LOONA", new Date(), "", "Block Berry Creative"),
-				2: new Artist(2, "WooAh!", new Date(), "", ""),
+				1: new Artist(
+					1,
+					"LOONA",
+					new Date(),
+					"https://akamai.sscdn.co/uploadfile/letras/fotos/1/4/0/b/140bfcca76325e621e62fa6156d96796.jpg",
+					"Block Berry Creative",
+				),
+				2: new Artist(
+					2,
+					"WooAh!",
+					new Date(),
+					"https://thebiaslist.com/wp-content/uploads/2024/04/wooah-blush.jpg",
+					"",
+				),
 			},
 			companies: {},
 		};
