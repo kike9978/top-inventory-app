@@ -6,7 +6,8 @@ function specificAlbumGet(req, res) {
 	// if (!album) {
 	// 	return res.status(404).send("No album Found");
 	// }
-	res.render("index", { items: [album] });
+	console.log(album);
+	res.render("albumDetail", { album });
 }
 
 const albumController = {

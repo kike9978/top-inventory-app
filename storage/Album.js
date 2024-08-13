@@ -9,6 +9,7 @@ export default class Album {
 		discountPrice,
 		id,
 		releaseDate,
+		trackList,
 	) {
 		this.title = title;
 		this.artistId = artistId;
@@ -19,5 +20,6 @@ export default class Album {
 		this.discountPrice = discountPrice;
 		this.id = id;
 		this.releaseDate = releaseDate;
+		this.trackList = trackList;
 	}
 }

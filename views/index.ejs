@@ -11,9 +11,9 @@
 <body class="flex flex-col h-svh">
 
     <%- include("components/navBar") %>
-        <div class="grid grid-cols-[150px,1fr] flex-grow">
+        <div class="grid grid-cols-[150px,1fr] flex-grow overflow-hidden">
             <%- include("components/sideBar") %>
-                <main class="flex flex-col p-4 bg-slate-50">
+                <main class="flex flex-col p-4 bg-slate-50 overflow-y-auto">
                     <section class="grid grid-cols-6 gap-4 mx-2">
                         <% if (items[0]===undefined) { %>
                             No albums
