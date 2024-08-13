@@ -9,31 +9,36 @@
 
 </head>
 
-<body>
-    <h1>Create Artist</h1>
-    <main class="flex flex-col max-w-80 mx-auto">
-        <form action="/new/artist" method="post" class="flex flex-col gap-3">
-            <%- include("components/input", {props:{id:"name", label:"Name", required:true}}) %>
-                <label for="" class="flex flex-col gap-1">
-                    Company
-                    <select name="companyId" id="" class="h-8
+<body class="flex flex-col h-svh">
+    <%- include("components/navBar") %>
+
+        <div class="grid grid-cols-[150px,1fr] flex-grow">
+            <%- include("components/sideBar") %>
+                <main class="flex flex-col p-4 bg-slate-50">
+                    <form action="/new/artist" method="post" class="flex flex-col gap-3">
+                        <%- include("components/input", {props:{id:"name", label:"Name", required:true}}) %>
+                            <label for="" class="flex flex-col gap-1">
+                                Company
+                                <select name="companyId" id="" class="h-8
                 border border-solid
                 border-slate-600 rounded pl-1" required>
-                        <option value="">Select Company</option>
-                        <% companies.forEach(company=> { %>
-                            <option value="<%= company.id %>">
-                                <%= company.name %>
-                            </option>
-                            <% }) %>
-                    </select>
-                </label>
+                                    <option value="">Select Company</option>
+                                    <% companies.forEach(company=> { %>
+                                        <option value="<%= company.id %>">
+                                            <%= company.name %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </label>
 
-                <%- include("components/input", {props:{id:"debutDate", label:"Debut Date", type:"date", required:
-                    true}}) %>
-                    <%- include("components/input", {props:{id:"imgUrl", label:"Image Url", type: "url" }}) %>
-                        <button>Hazme click</button>
-        </form>
-    </main>
+                            <%- include("components/input", {props:{id:"debutDate", label:"Debut Date", type:"date",
+                                required: true}}) %>
+                                <%- include("components/input", {props:{id:"imgUrl", label:"Image Url", type: "url" }})
+                                    %>
+                                    <button>Hazme click</button>
+                    </form>
+                </main>
+        </div>
 
 </body>
 

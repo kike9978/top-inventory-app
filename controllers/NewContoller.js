@@ -1,4 +1,12 @@
 import storage from "../storage/dbTest";
+import { body, validationResult } from "express-validator";
+
+const validateAlbum = [
+	body("title").trim().notEmpty(),
+	body("member").trim(),
+	body("imageUrl").trim().optional().isURL(),
+	body("artistId").notEmpty().withMessage("cannot be empty"),
+];
 
 function newAlbumGet(req, res) {
 	res.render("newAlbum", { artists: storage.getArtists() });
@@ -9,10 +17,19 @@ function newArtistGet(req, res) {
 function newCompanyGet(req, res) {
 	res.render("newCompany");
 }
-function newAlbumPost(req, res) {
-	storage.addAlbum(req.body);
-	res.redirect("/");
-}
+
+const newAlbumPost = [
+	validateAlbum,
+	(req, res) => {
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).send(errors.array()[0]);
+		}
+		storage.addAlbum(req.body);
+		res.redirect("/");
+	},
+];
+
 function newArtistPost(req, res) {
 	storage.addArtist(req.body);
 	res.redirect("/");

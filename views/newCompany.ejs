@@ -9,14 +9,17 @@
 
 </head>
 
-<body>
-    <h1>Create Comany</h1>
-    <main class="flex flex-col max-w-80 mx-auto">
-        <form action="/new/company" method="post" class="flex flex-col gap-3">
-            <%- include("components/input", {props:{id:"name", label:"Name", required:true}}) %>
-                <button>Hazme click</button>
-        </form>
-    </main>
+<body class="flex flex-col h-svh">
+    <%- include("components/navBar") %>
+        <div class="grid grid-cols-[150px,1fr] flex-grow">
+            <%- include("components/sideBar") %>
+                <main class="flex flex-col p-4 bg-slate-50">
+                    <form action="/new/company" method="post" class="flex flex-col gap-3">
+                        <%- include("components/input", {props:{id:"name", label:"Name", required:true}}) %>
+                            <button>Hazme click</button>
+                    </form>
+                </main>
+        </div>
 
 </body>
 

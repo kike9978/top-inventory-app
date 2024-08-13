@@ -59,6 +59,7 @@ class Storage {
 	}
 
 	getArtistById(artistId) {
+		console.log("hola");
 		return this.storage.artists[artistId];
 	}
 
