@@ -1,4 +1,4 @@
-import storage from "../storage/dbTest";
+import storage from "../storage/dbTest.js";
 
 function indexGet(req, res) {
 	const items = storage.getItems();

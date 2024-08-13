@@ -1,4 +1,4 @@
-import storage from "../storage/dbTest";
+import storage from "../storage/dbTest.js";
 import { body, validationResult } from "express-validator";
 
 const validateAlbum = [

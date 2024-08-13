@@ -1,4 +1,4 @@
-import storage from "../storage/dbTest";
+import storage from "../storage/dbTest.js";
 
 function artistDetailGet(req, res) {
 	const artist = storage.getArtistById(req.params.artistId);

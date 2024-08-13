@@ -1,6 +1,6 @@
-import Album from "./Album";
-import Artist from "./Artist";
-import Company from "./Company";
+import Album from "./Album.js";
+import Artist from "./Artist.js";
+import Company from "./Company.js";
 
 class Storage {
 	constructor() {

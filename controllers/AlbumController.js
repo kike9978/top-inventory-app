@@ -1,4 +1,4 @@
-import storage from "../storage/dbTest";
+import storage from "../storage/dbTest.js";
 
 function specificAlbumGet(req, res) {
 	const album = storage.getAlbumById(req.params.albumId);

@@ -1,10 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
-import indexController from "./controllers/IndexController";
+import indexController from "./controllers/IndexController.js";
 import path from "node:path";
-import albumRouter from "./routers/Albums";
-import newRouter from "./routers/New";
-import artistRouter from "./routers/Artists";
+import albumRouter from "./routers/Albums.js";
+import newRouter from "./routers/New.js";
+import artistRouter from "./routers/Artists.js";
+import * as url from "node:url";
+
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+const __filename = url.fileURLToPath(import.meta.url);
 
 dotenv.config();
 const assetsPath = path.join(__dirname, "/public");
