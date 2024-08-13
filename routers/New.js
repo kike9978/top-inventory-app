@@ -7,6 +7,8 @@ newRouter.get("/album", newController.newAlbumGet);
 newRouter.post("/album", newController.newAlbumPost);
 newRouter.get("/artist", newController.newArtistGet);
 newRouter.post("/artist", newController.newArtistPost);
+newRouter.get("/company", newController.newCompanyGet);
+newRouter.post("/company", newController.newCompanyPost);
 newRouter.get("/", (req, res) => {
 	res.send("not Found");
 });

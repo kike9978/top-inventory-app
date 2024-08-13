@@ -1,5 +1,6 @@
 import Album from "./Album";
 import Artist from "./Artist";
+import Company from "./Company";
 
 class Storage {
 	constructor() {
@@ -33,6 +34,7 @@ class Storage {
 				1: new Artist(1, "LOONA", new Date(), "", "Block Berry Creative"),
 				2: new Artist(2, "WooAh!", new Date(), "", ""),
 			},
+			companies: {},
 		};
 	}
 
@@ -50,6 +52,10 @@ class Storage {
 
 	getArtists() {
 		return Object.values(this.storage.artists);
+	}
+
+	getCompanies() {
+		return Object.values(this.storage.companies);
 	}
 
 	addAlbum(albumData) {
@@ -75,6 +81,10 @@ class Storage {
 			artistData.imgUrl,
 			artistData.company,
 		);
+		this.id++;
+	}
+	addCompany(companyData) {
+		this.storage.companies[this.id] = new Company(this.id, companyData.name);
 		this.id++;
 	}
 }
