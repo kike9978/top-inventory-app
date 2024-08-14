@@ -65,7 +65,7 @@ async function getCompanies() {
 }
 
 async function getCompanyById(companyId) {
-	const { rows } = await pool.query("SELECT * FROM artists WHERE id = $1", [
+	const { rows } = await pool.query("SELECT * FROM companies WHERE id = $1", [
 		companyId,
 	]);
 
@@ -134,6 +134,19 @@ async function addCompany(companyData) {
 	]);
 }
 
+async function updateArtist(artistData, artistId) {
+	await pool.query(
+		"UPDATE artists SET name = $1, company_id = $2, debut_date = $3, img_url = $4 WHERE id = $5;",
+		[
+			artistData.name,
+			artistData.companyId,
+			artistData.debutDate,
+			artistData.imgUrl,
+			artistId,
+		],
+	);
+}
+
 const db = {
 	getAlbums,
 	getArtists,
@@ -145,6 +158,7 @@ const db = {
 	addArtist,
 	addCompany,
 	getCompanyById,
+	updateArtist,
 };
 
 export default db;

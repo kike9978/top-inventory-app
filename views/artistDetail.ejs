@@ -16,12 +16,14 @@
         <div class="grid grid-cols-[150px,1fr] flex-grow overflow-hidden">
             <%- include("components/sideBar") %>
                 <main class="flex flex-col p-4 bg-slate-50 overflow-y-auto">
+                    <a href="/edit/artist/<%= artist.id %>">Edit artist</a>
                     <% if (artist.coverImg) { %>
-                        <img src="<%= artist.coverImg %>" alt="" class="h-72 w-full object-cover">
+                        <img src="<%= artist.coverImg%>" alt="" class="h-72 w-full object-cover">
                         <% } else { %>
                             <section
                                 class="h-72 w-full object-cover bg-slate-100 flex justify-center items-center relative shrink-0">
-                                <img src="<%= artist.imgUrl %>" alt="" class="size-28 rounded-full object-cover">
+                                <img src="<%= artist.imgUrl ? artist.imgUrl : 'https://webcolours.ca/wp-content/uploads/2020/10/webcolours-unknown.png' %>"
+                                    alt="" class="size-28 rounded-full object-cover">
                                 <h1 class="absolute bottom-2 left-2 text-2xl font-semibold">
                                     <%= artist.name %>
                                 </h1>

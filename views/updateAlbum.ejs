@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Album | <%= album.title %>
+    </title>
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body class="flex flex-col h-svh">
+    <%- include("components/navBar") %>
+        <div class="grid grid-cols-[150px,1fr] flex-grow">
+            <%- include("components/sideBar") %>
+
+                <main class="flex flex-col p-4 bg-slate-50">
+                    <form action="/new/album" method="post" class="flex flex-col gap-3">
+                        <%- include("components/input", {props:{id:"title", label:"Title", required:true}}) %>
+                            <label for="" class="flex flex-col gap-1">
+                                Artist
+                                <select name="artistId" id="" class="h-8
+                        border border-solid
+                        border-slate-600 rounded pl-1" required>
+                                    <option value="">Select Artist</option>
+                                    <% artists.forEach(artist=> { %>
+                                        <option value="<%= artist.id %>">
+                                            <%= artist.name %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </label>
+                            <%- include("components/input", {props:{id:"member", label:"Member"}}) %>
+                                <%- include("components/input", {props:{id:"price", label:"Price", type: "number"
+                                    ,step:0.01}}) %>
+                                    <%- include("components/input", {props:{id:"discountPrice", label:"Discount Price",
+                                        type:"number", step:0.01}})%>
+                                        <%- include("components/input", {props:{id:"releaseDate", label:"Release Date",
+                                            type:"date", required: true}}) %>
+                                            <%- include("components/input", {props:{id:"imgUrl", label:"Image Url",
+                                                type: "url" }}) %>
+                                                <%- include("components/input", {props:{id:"reviewScore", label:`Review
+                                                    Score`, type:"number", max:5, min:0}}) %>
+                                                    <button>Hazme click</button>
+                    </form>
+                </main>
+        </div>
+
+</body>
+
+</html>

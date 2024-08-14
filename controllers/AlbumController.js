@@ -6,7 +6,6 @@ async function specificAlbumGet(req, res) {
 	// if (!album) {
 	// 	return res.status(404).send("No album Found");
 	// }
-	console.log(album);
 	res.render("albumDetail", { album });
 }
 

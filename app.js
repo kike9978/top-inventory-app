@@ -5,6 +5,7 @@ import path from "node:path";
 import albumRouter from "./routers/Albums.js";
 import newRouter from "./routers/New.js";
 import artistRouter from "./routers/Artists.js";
+import updateRouter from "./routers/Update.js";
 import * as url from "node:url";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
@@ -23,6 +24,7 @@ app.set("view engine", "ejs");
 
 app.use("/album", albumRouter);
 app.use("/new", newRouter);
+app.use("/edit", updateRouter);
 app.use("/artist", artistRouter);
 app.get("/", indexController.indexGet);
 

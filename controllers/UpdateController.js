@@ -1,5 +1,6 @@
 import db from "../storage/db.js";
 import { body, validationResult } from "express-validator";
+import shortFormatter from "../utils/dateFormatter.js";
 
 const validateAlbum = [
 	body("title").trim().notEmpty(),
@@ -32,46 +33,51 @@ const validateAlbum = [
 	body("artistId").notEmpty().withMessage("cannot be empty"),
 ];
 
-async function newAlbumGet(req, res) {
+async function updateAlbumGet(req, res) {
 	const artists = await db.getArtists();
-	res.render("newAlbum", { artists });
+	res.render("updateAlbum", { artists });
 }
-async function newArtistGet(req, res) {
+async function updateArtistGet(req, res) {
+	const artist = await db.getArtistById(req.params.artistId);
 	const companies = await db.getCompanies();
-	res.render("newArtist", { companies });
+	res.render("updateArtist", {
+		artist: { ...artist, debutDate: shortFormatter(artist.debutDate) },
+		companies,
+	});
 }
-function newCompanyGet(req, res) {
-	res.render("newCompany");
+function updateCompanyGet(req, res) {
+	res.render("updateCompany");
 }
 
-const newAlbumPost = [
+const updateAlbumPost = [
 	validateAlbum,
 	async (req, res) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			return res.status(400).send(errors.array()[0]);
 		}
-		await db.addAlbum(req.body);
+
+		await db.updateAlbum(req.body);
 		res.redirect("/");
 	},
 ];
 
-async function newArtistPost(req, res) {
-	await db.addArtist(req.body);
+async function updateArtistPost(req, res) {
+	await db.updateArtist(req.body, req.params.artistId);
 	res.redirect("/");
 }
-async function newCompanyPost(req, res) {
-	await db.addCompany(req.body);
+async function updateCompanyPost(req, res) {
+	await db.updateCompany(req.body);
 	res.redirect("/");
 }
 
-const newController = {
-	newAlbumGet,
-	newAlbumPost,
-	newArtistGet,
-	newArtistPost,
-	newCompanyGet,
-	newCompanyPost,
+const updateController = {
+	updateAlbumGet,
+	updateAlbumPost,
+	updateArtistGet,
+	updateArtistPost,
+	updateCompanyGet,
+	updateCompanyPost,
 };
 
-export default newController;
+export default updateController;

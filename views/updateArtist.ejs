@@ -15,8 +15,15 @@
         <div class="grid grid-cols-[150px,1fr] flex-grow">
             <%- include("components/sideBar") %>
                 <main class="flex flex-col p-4 bg-slate-50">
-                    <form action="/new/artist" method="post" class="flex flex-col gap-3">
-                        <%- include("components/input", {props:{id:"name", label:"Name", required:true}}) %>
+                    <div class="flex flex-col">
+                        <h1 class="text-2xl">Edit Artist</h1>
+                        <h2>
+                            <%= artist.name %>
+                        </h2>
+                    </div>
+                    <form action="/edit/artist/<%= artist.id %>" method="post" class="flex flex-col gap-3">
+                        <%- include("components/input", {props:{id:"name", label:"Name", required:true, value:
+                            artist.name}}) %>
                             <label for="" class="flex flex-col gap-1">
                                 Company
                                 <select name="companyId" id="" class="h-8
@@ -24,7 +31,8 @@
                 border-slate-600 rounded pl-1">
                                     <option value="">Select Company</option>
                                     <% companies.forEach(company=> { %>
-                                        <option value="<%= company.id %>">
+                                        <option value="<%= company.id %> " <%=company.id===artist.companyId
+                                            ? " selected" : "" %>>
                                             <%= company.name %>
                                         </option>
                                         <% }) %>
@@ -32,9 +40,9 @@
                             </label>
 
                             <%- include("components/input", {props:{id:"debutDate", label:"Debut Date", type:"date",
-                                required: true}}) %>
-                                <%- include("components/input", {props:{id:"imgUrl", label:"Image Url", type: "url" }})
-                                    %>
+                                required: true, value:artist.debutDate}}) %>
+                                <%- include("components/input", {props:{id:"imgUrl", label:"Image Url", type: "url" ,
+                                    value: artist.imgUrl}}) %>
                                     <button>Hazme click</button>
                     </form>
                 </main>
