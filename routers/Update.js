@@ -1,5 +1,5 @@
 import { Router } from "express";
-import updateController from "../controllers/UpdateController";
+import updateController from "../controllers/UpdateController.js";
 
 const updateRouter = Router();
 
