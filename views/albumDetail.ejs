@@ -30,24 +30,33 @@
                     </article>
                     <section>
                         <h2>Tracklist</h2>
+                        <%= album.releaseDate %>
 
-                        <% if (!album.trackList) { %>
-                            <div class="flex flex-col justify-center items-center w-full py-32">
-                                <p class="font-semibold text-slate-700">This album does not have any tracks</p>
-                                <p class="text-sm text-slate-700"> Edit the album's tracklist to see its tracks</p>
-                                <a href="/new/album">Edit album</a>
-                            </div>
-                            <% } else { %>
+                            <% if (!album.trackList) { %>
+                                <div class="flex flex-col justify-center items-center w-full py-32">
+                                    <p class="font-semibold text-slate-700">This album does not have any tracks</p>
+                                    <p class="text-sm text-slate-700"> Edit the album's tracklist to see its tracks</p>
+                                    <a href="/new/album">Edit album</a>
+                                </div>
+                                <% } else { %>
 
-                                <ol class="list-decimal">
+                                    <table class="list-decimal">
 
-                                    <% album.trackList.forEach(track=> { %>
-                                        <li>
-                                            <%= track %>
-                                        </li>
-                                        <% }) %>
-                                            </ul>
-                                            <% } %>
+                                        <tbody>
+                                            <% album.trackList.forEach(track=> { %>
+                                                <tr>
+                                                    <td>
+                                                        <%= track.track_number %>
+                                                    </td>
+                                                    <td>
+                                                        <%= track.title %>
+                                                    </td>
+                                                    <td><a href="<%= track.url %>">Link</a></td>
+                                                </tr>
+                                                <% }) %>
+                                        </tbody>
+                                    </table>
+                                    <% } %>
                     </section>
                 </main>
         </div>

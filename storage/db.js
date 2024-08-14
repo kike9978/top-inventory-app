@@ -13,6 +13,7 @@ function transformToAlbum(data) {
 		data.discount_price,
 		data.id,
 		data.release_date,
+		data.track_list,
 	);
 }
 
@@ -38,10 +39,19 @@ async function getAlbums() {
 }
 
 async function getAlbumById(albumId) {
+	console.log("hola");
+	const tracklistRaw = await pool.query(
+		"SELECT track_list.song_id, songs.title, track_list.track_number, songs.url, songs.duration FROM albums JOIN track_list ON track_list.album_id = albums.id JOIN songs ON track_list.song_id = songs.id WHERE albums.id = $1;",
+		[albumId],
+	);
+	const trackList = tracklistRaw.rows;
+	console.log(trackList);
 	const { rows } = await pool.query("SELECT * FROM albums WHERE id = $1", [
 		albumId,
 	]);
-	return transformToAlbum(rows[0]);
+	const albumData = { ...rows[0], track_list: trackList };
+	console.log(albumData);
+	return transformToAlbum(albumData);
 }
 
 async function getArtistById(artistId) {
