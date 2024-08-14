@@ -3,24 +3,33 @@ import { body, validationResult } from "express-validator";
 
 const validateAlbum = [
 	body("title").trim().notEmpty(),
-	body("artistId").notEmpty().withMessage("cannot be empty"),
-	body("member").trim().optional(),
-	body("price").isNumeric().toFloat(),
+	body("member").trim(),
+	body("imageUrl").trim().optional().isURL(),
 	body("discountPrice")
+		.trim()
 		.optional()
 		.custom((value) => {
-			if (value === "" || value === null || value === undefined) {
+			if (value === "") {
 				return true;
 			}
-			if (Number.isNaN(Number.parseFloat(value))) {
+			if (Number.isNaN(value)) {
 				throw new Error("Must be a number");
 			}
 			return true;
-		})
-		.toFloat(),
-	body("releaseDate").isDate(),
-	body("imgUrl").trim().optional().isURL(),
-	body("reviewScore").optional().isNumeric().toFloat(),
+		}),
+	body("reviewScore")
+		.trim()
+		.optional()
+		.custom((value) => {
+			if (value === "") {
+				return true;
+			}
+			if (Number.isNaN(value)) {
+				throw new Error("Must be a number");
+			}
+			return true;
+		}),
+	body("artistId").notEmpty().withMessage("cannot be empty"),
 ];
 
 async function newAlbumGet(req, res) {
@@ -43,12 +52,12 @@ const newAlbumPost = [
 			return res.status(400).send(errors.array()[0]);
 		}
 
-		// Convert empty strings to undefined for optional fields
-		["imgUrl", "reviewScore", "discountPrice"].forEach((field) => {
-			if (req.body[field] === "") {
-				req.body[field] = null;
-			}
-		});
+		// // Convert empty strings to undefined for optional fields
+		// ["imgUrl", "reviewScore", "discountPrice"].forEach((field) => {
+		// 	if (req.body[field] === "") {
+		// 		req.body[field] = null;
+		// 	}
+		// });
 
 		console.log(req.body);
 		await db.addAlbum(req.body);

@@ -10,7 +10,7 @@ async function indexGet(req, res) {
 		return album;
 	});
 	const artists = await db.getArtists();
-	console.log(albums);
+
 	res.render("index", { items: albums, artists });
 }
 
