@@ -1,7 +1,7 @@
-import storage from "../storage/dbTest.js";
+import db from "../storage/db.js";
 
-function specificAlbumGet(req, res) {
-	const album = storage.getAlbumById(req.params.albumId);
+async function specificAlbumGet(req, res) {
+	const album = await db.getAlbumById(req.params.albumId);
 
 	// if (!album) {
 	// 	return res.status(404).send("No album Found");

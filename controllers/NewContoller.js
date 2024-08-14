@@ -1,18 +1,35 @@
-import storage from "../storage/dbTest.js";
+import db from "../storage/db.js";
 import { body, validationResult } from "express-validator";
 
 const validateAlbum = [
 	body("title").trim().notEmpty(),
-	body("member").trim(),
-	body("imageUrl").trim().optional().isURL(),
 	body("artistId").notEmpty().withMessage("cannot be empty"),
+	body("member").trim().optional(),
+	body("price").isNumeric().toFloat(),
+	body("discountPrice")
+		.optional()
+		.custom((value) => {
+			if (value === "" || value === null || value === undefined) {
+				return true;
+			}
+			if (Number.isNaN(Number.parseFloat(value))) {
+				throw new Error("Must be a number");
+			}
+			return true;
+		})
+		.toFloat(),
+	body("releaseDate").isDate(),
+	body("imgUrl").trim().optional().isURL(),
+	body("reviewScore").optional().isNumeric().toFloat(),
 ];
 
-function newAlbumGet(req, res) {
-	res.render("newAlbum", { artists: storage.getArtists() });
+async function newAlbumGet(req, res) {
+	const artists = await db.getArtists();
+	res.render("newAlbum", { artists });
 }
-function newArtistGet(req, res) {
-	res.render("newArtist", { companies: storage.getCompanies() });
+async function newArtistGet(req, res) {
+	const companies = await db.getCompanies();
+	res.render("newArtist", { companies });
 }
 function newCompanyGet(req, res) {
 	res.render("newCompany");
@@ -20,22 +37,31 @@ function newCompanyGet(req, res) {
 
 const newAlbumPost = [
 	validateAlbum,
-	(req, res) => {
+	async (req, res) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			return res.status(400).send(errors.array()[0]);
 		}
-		storage.addAlbum(req.body);
+
+		// Convert empty strings to undefined for optional fields
+		["imgUrl", "reviewScore", "discountPrice"].forEach((field) => {
+			if (req.body[field] === "") {
+				req.body[field] = null;
+			}
+		});
+
+		console.log(req.body);
+		await db.addAlbum(req.body);
 		res.redirect("/");
 	},
 ];
 
-function newArtistPost(req, res) {
-	storage.addArtist(req.body);
+async function newArtistPost(req, res) {
+	await db.addArtist(req.body);
 	res.redirect("/");
 }
-function newCompanyPost(req, res) {
-	storage.addCompany(req.body);
+async function newCompanyPost(req, res) {
+	await db.addCompany(req.body);
 	res.redirect("/");
 }
 

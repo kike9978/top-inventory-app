@@ -1,10 +1,15 @@
-import storage from "../storage/dbTest.js";
+import db from "../storage/db.js";
 
-function artistDetailGet(req, res) {
-	const artist = storage.getArtistById(req.params.artistId);
+async function artistDetailGet(req, res) {
+	const artist = await db.getArtistById(req.params.artistId);
+	let company = "";
+	if (artist.companyId) {
+		company = await db.getCompanyById(artist.companyId);
+	}
+	const albums = await db.getAlbumsByArtistId(artist.id);
 	res.render("artistDetail", {
-		artist: { ...artist, company: storage.getCompanyById(artist.companyId) },
-		albums: storage.getAlbumsByArtistId(artist.id),
+		artist: { ...artist, company },
+		albums,
 	});
 }
 

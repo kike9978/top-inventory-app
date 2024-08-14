@@ -1,15 +1,17 @@
-import storage from "../storage/dbTest.js";
+import db from "../storage/db.js";
 
-function indexGet(req, res) {
-	const items = storage.getItems();
+async function indexGet(req, res) {
+	const items = await db.getAlbums();
 	const albums = items.map((item) => {
 		const album = {
 			...item,
-			artist: storage.getArtistById(item.artistId).name,
+			artist: db.getArtistById(item.artistId).name,
 		};
 		return album;
 	});
-	res.render("index", { items: albums, artists: storage.getArtists() });
+	const artists = await db.getArtists();
+	console.log(albums);
+	res.render("index", { items: albums, artists });
 }
 
 const indexController = {

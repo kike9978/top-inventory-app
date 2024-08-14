@@ -2,7 +2,6 @@ export default class Album {
 	constructor(
 		title,
 		artistId,
-		member,
 		price,
 		imgUrl,
 		reviewScore,
@@ -13,7 +12,6 @@ export default class Album {
 	) {
 		this.title = title;
 		this.artistId = artistId;
-		this.member = member;
 		this.price = price;
 		this.imgUrl = imgUrl;
 		this.reviewScore = reviewScore;
